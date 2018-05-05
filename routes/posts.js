@@ -29,6 +29,14 @@ PostsRouter.post('/', (req, res) => {
     // res.send(error); // For API or when testing with Postman
   });
 });
+PostsRouter.delete('/:id', (req, res) => {
+  Post.findByIdAndRemove(req.body.id).then(() => {
+    res.redirect('/posts')
+    // res.send('Post Was Deleted')
+  }).catch(() => {
+    res.status(400).render('errors/400')
+  });
+});
 
 
 
