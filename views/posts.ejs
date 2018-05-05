@@ -3,14 +3,25 @@
   <head>
     <meta charset="utf-8">
     <title>Welcome to the Posts Page</title>
+    <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
     <h1 align='center'> Here are all the Posts</h1>
     <hr>
-    <form action="/posts" method="POST">
-      <textarea name="content" rows="8" cols="80">
-
+    <form align='center'action="/posts" method="POST">
+      <textarea
+        name="content"
+        rows="8"
+        cols="80">
       </textarea>
+        <div>
+        <input type="submit" value="Add Post">
+        </div>
     </form>
+    <%posts.forEach((post) => {%>
+      <div class="text-box">
+        <p align='center'><%=post.content%></p>
+      </div>
+    <%})%>
   </body>
 </html>
