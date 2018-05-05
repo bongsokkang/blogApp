@@ -16,7 +16,16 @@ PostsRouter.get('/', (req, res) => {
     // res.send(error); // For API or when testing in Postman
   });
 });
-
+PostsRouter.get('/:id', (req, res) => {
+  Post.findById(req.params.id).then((post) => {
+    res.render('post', {
+      post:post,
+      title: 'View Post'
+    }).catch(() => {
+      res.status(400).render('errors/400');
+    });
+  });
+});
 PostsRouter.post('/', (req, res) => {
   let newPost = new Post({
     content: req.body.content
@@ -30,14 +39,22 @@ PostsRouter.post('/', (req, res) => {
   });
 });
 PostsRouter.delete('/:id', (req, res) => {
-  Post.findByIdAndRemove(req.body.id).then(() => {
+  Post.findByIdAndRemove(req.params.id).then((deletedPost) => {
+    // res.send(deletedPost) // For Testing in Postman
     res.redirect('/posts')
-    // res.send('Post Was Deleted')
-  }).catch(() => {
+  }).catch((error) => {
+    res.status(400).render('errors/400')
+    // res.send(error) // For testing in Postman
+  });
+});
+PostsRouter.put('/:id', (req, res) => {
+  Post.findByIdAndUpdate(req.params.id).then((updatedPost) => {
+    res.render('post');
+    res.json(updatedPost);
+  }).catch((error) => {
     res.status(400).render('errors/400')
   });
 });
-
 
 
 

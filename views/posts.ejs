@@ -3,44 +3,83 @@
   <% include ./partials/head %>
   <body>
     <% include ./partials/nav %>
-    <div class="container">
+    <div class="container-fluid">
       <div class="row">
         <div class="col-md-4">
           <h4 align='center'>Post To The Wall</h4>
           <form align='center'action="/posts" method="POST">
             <textarea
               name="content"
-              rows="5"
-              cols="40">
+              rows="3 "
+              cols="30">
             </textarea>
-              <div>
+            <div>
               <input type="submit" value="Add Post">
-              </div>
+            </div>
           </form>
-        </div>
+        </div> <!--CELL ONE-->
         <div class="col-md-4">
-          <%posts.forEach((post) => {%>
-            <a href="/posts/<%=post._id%>">
-            <div class="text-box"align='center'>
-              <p align='center'><%=post.content%></p>
+        <% posts.forEach((post) => {%>
+          <a href="/posts/<%=post._id%>">
+          <p align='center'><%=post.content%></p>
+          </a>
+          <div class="container-fluid">
+            <div class="row">
+                <button
+                type="button"
+                class="btn btn-info btn-sm"
+                data-toggle="modal"
+                data-target="#myModal">
+                Comment
+                </button>
+                <form method="POST" action="/posts/<%= post._id%>?_method=DELETE">
+                  <button class="btn btn-sm btn-danger"type="submit">Delete</button>
+                </form>
             </div>
-            </a>
-            <form align='center'action="/comments/<%= post._id %>" method="POST">
-              <input type="text" name="comments">
-              <input type="submit"value="Add a Comment">
-            </form>
-            <div class="container">
-
-              <%post.comments.forEach((comment) => {%>
-                <p align='center'><%= comment.content%></p>
-              <%})%>
+          </div>
+          <div class="modal fade" id="myModal" role="dialog">
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">Add a Comment</h4>
+              </div>
+              <div class="modal-body">
+                <form align='center'action="/comments/<%= post._id %>" method="POST">
+                  <input type="text" name="comments">
+                  <button class="btn btn-sm btn-info"type="submit"><i class="far fa-comment"></i></button>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
             </div>
-          <%})%>
-
+          </div>
         </div>
-        <div class="col-md-4">
-        </div>
+          <textarea align='center' rows="4" cols="30">
+            <% post.comments.forEach((comment) => { %>
+            <%= comment.content%>
+            <% }) %>
+          </textarea>
+        <%})%>
+        </div> <!--CELL TWO-->
       </div>
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <% include ./partials/footer%>
   </body>
 </html>
