@@ -8,7 +8,8 @@ PostsRouter.get('/', (req, res) => {
   Post.find().then((posts) => {
     // res.json(posts) When testing route in Postman
     res.render('posts', {
-      posts: posts
+      posts: posts,
+      title: 'See All the Posts'
     });
   }).catch((error) => {
     res.status(400).render('errors/400')

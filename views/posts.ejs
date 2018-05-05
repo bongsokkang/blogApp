@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Welcome to the Posts Page</title>
-    <link rel="stylesheet" href="css/style.css">
-  </head>
+  <% include ./partials/head %>
   <body>
     <h1 align='center'> Here are all the Posts</h1>
     <hr>
@@ -19,9 +15,13 @@
         </div>
     </form>
     <%posts.forEach((post) => {%>
-      <div class="text-box">
+      <div class="text-box"align='center'>
         <p align='center'><%=post.content%></p>
       </div>
+      <form action="/comments/<%= post._id %>" method="POST">
+        <input type="text" name="comments">
+        <input type="submit"value="Add a Comment">
+      </form>
     <%})%>
   </body>
 </html>

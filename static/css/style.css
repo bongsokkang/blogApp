@@ -1,0 +1,10 @@
+.text-box
+{
+  width: 600px;
+  height: 300px;
+  border: 2px solid grey;
+  border-radius: 3%;
+  margin: auto;
+  margin-top: 20px;
+  padding: 20px
+}
