@@ -6,7 +6,6 @@ const Schema = mongoose.Schema;
 const CommentsSchema = new Schema({
   content: {
     type: String,
-    default: '',
     minlength: 3
   }
 });

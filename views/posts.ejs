@@ -7,21 +7,29 @@
     <form align='center'action="/posts" method="POST">
       <textarea
         name="content"
-        rows="8"
-        cols="80">
+        rows="5"
+        cols="40">
       </textarea>
         <div>
         <input type="submit" value="Add Post">
         </div>
     </form>
     <%posts.forEach((post) => {%>
+      <a href="/posts/<%=post._id%>">
       <div class="text-box"align='center'>
         <p align='center'><%=post.content%></p>
       </div>
-      <form action="/comments/<%= post._id %>" method="POST">
+      </a>
+      <form align='center'action="/comments/<%= post._id %>" method="POST">
         <input type="text" name="comments">
         <input type="submit"value="Add a Comment">
       </form>
+      <div class="container">
+
+        <%post.comments.forEach((comment) => {%>
+          <p align='center'><%= comment.content%></p>
+        <%})%>
+      </div>
     <%})%>
   </body>
 </html>

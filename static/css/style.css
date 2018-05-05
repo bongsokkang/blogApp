@@ -1,7 +1,7 @@
 .text-box
 {
-  width: 600px;
-  height: 300px;
+  width: 300px;
+  height: 100px;
   border: 2px solid grey;
   border-radius: 3%;
   margin: auto;

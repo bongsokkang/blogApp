@@ -12,6 +12,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}));
 
 app.use('/posts', PostsRouter);
+app.use('/comments', CommentsRouter);
 app.use(morgan('tiny'));
 app.set('view engine', 'ejs');
 app.use(express.static('static'));
