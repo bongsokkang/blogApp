@@ -1,5 +1,4 @@
-.text-box
-{
+.text-box {
   width: 300px;
   height: 100px;
   border: 2px solid grey;
@@ -9,8 +8,7 @@
   padding: 20px
 }
 
-footer
-{
+footer {
   position: absolute;
   bottom: 5%;
   left: 45%;

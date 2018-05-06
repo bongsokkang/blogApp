@@ -3,10 +3,8 @@ const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override')
-
 const PostsRouter = require('./routes/posts');
 const CommentsRouter = require('./routes/comments')
-
 const PORT = process.env.PORT || 3333;
 
 app.use(bodyParser.json())
@@ -19,15 +17,13 @@ app.use('/posts', PostsRouter);
 app.use('/comments', CommentsRouter);
 app.use(morgan('tiny'));
 
-
-
 app.get('/', (req, res) => {
   res.render('home', {
     title: 'Home Page'
   })
 });
 app.get('*', (req, res) => {
-  res.status(404).render('404');
+  res.status(404).render('errors/404');
 })
 app.listen(PORT, () => {
   console.log(`Server is locked and loaded on port ${PORT}`);

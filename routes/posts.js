@@ -19,11 +19,11 @@ PostsRouter.get('/', (req, res) => {
 PostsRouter.get('/:id', (req, res) => {
   Post.findById(req.params.id).then((post) => {
     res.render('post', {
-      post:post,
-      title: 'View Post'
-    }).catch(() => {
-      res.status(400).render('errors/400');
+      post : post,
+      title : 'View Post'
     });
+  }).catch(() => {
+    res.status(400).render('errors/400');
   });
 });
 PostsRouter.post('/', (req, res) => {
